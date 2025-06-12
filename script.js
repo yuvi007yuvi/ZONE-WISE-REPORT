@@ -35,10 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const covered = parseInt(item.Covered) || 0;
 
             if (!zoneData[zone]) {
-                zoneData[zone] = { total: 0, covered: 0 };
+                zoneData[zone] = { total: 0, covered: 0, entries: 0 };
             }
             zoneData[zone].total += total;
             zoneData[zone].covered += covered;
+            zoneData[zone].entries += 1;
         });
 
         updateTable(zoneData);
@@ -49,20 +50,24 @@ document.addEventListener('DOMContentLoaded', () => {
         zoneDataTableBody.innerHTML = ''; // Clear existing table data
         let grandTotal = 0;
         let grandCovered = 0;
+        let grandEntries = 0;
 
         for (const zone in zoneData) {
             const total = zoneData[zone].total;
             const covered = zoneData[zone].covered;
             const percentage = total > 0 ? ((covered / total) * 100).toFixed(2) : 0;
 
+            const entries = zoneData[zone].entries;
             const row = zoneDataTableBody.insertRow();
             row.insertCell().textContent = zone;
             row.insertCell().textContent = total;
             row.insertCell().textContent = covered;
+            row.insertCell().textContent = entries;
             row.insertCell().textContent = `${percentage}%`;
 
             grandTotal += total;
             grandCovered += covered;
+            grandEntries += entries;
         }
 
         // Add Grand Total row
@@ -71,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grandTotalRow.insertCell().textContent = 'Grand Total';
         grandTotalRow.insertCell().textContent = grandTotal;
         grandTotalRow.insertCell().textContent = grandCovered;
+        grandTotalRow.insertCell().textContent = grandEntries;
         const grandPercentage = grandTotal > 0 ? ((grandCovered / grandTotal) * 100).toFixed(2) : 0;
         grandTotalRow.insertCell().textContent = `${grandPercentage}%`;
     }
