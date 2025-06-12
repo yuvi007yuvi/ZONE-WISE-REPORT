@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <!-- Add your logo image here -->
+                <img src="logo.png" alt="Logo"> -
+            </div>
+            <h1>Zone Wise  Report</h1>
+        </div>
+    </header>
+
+    <input type="file" id="csvFileInput" accept=".csv">
+    <label for="csvFileInput">Choose File</label>
+
+        <div class="dashboard-content">
+            <div class="data-summary">
+               <center> <h2>Zone Data Summary</h2></center>
+                <table id="zoneDataTable">
+                    <thead>
+                        <tr>
+                            <th>Zone</th>
+                            <th>Total</th>
+                            <th>Covered</th>
+                            <th>Percentage Covered</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="chart-container">
+            <center><h2>Coverage by Zone</h2></center>
+            <div id="zoneChartsContainer" class="zone-charts-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

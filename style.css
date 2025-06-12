@@ -1,0 +1,185 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e0f2f7; /* Light blue background */
+    color: #333;
+}
+
+header {
+    /* background-color: #4745f1; Blue header */
+    color: rgb(0, 0, 0);
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-container {
+    margin-right: 15px; /* Space between logo and title */
+}
+
+.logo-container img {
+    height: 50px; /* Adjust logo size as needed */
+    width: auto;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: rgb(20, 16, 16);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Adjust column ratio */
+    gap: 30px;
+    margin: 0 auto; /* Center the container */
+    max-width: 1200px; /* Max width for content */
+    padding: 0 20px 20px 20px; /* Padding for the container */
+}
+
+.zone-data-summary,
+.coverage-pie-chart {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.zone-data-summary:hover,
+.coverage-pie-chart:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+h2 {
+    color: #0056b3; /* Darker blue for section titles */
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #007bff; /* Underline effect */
+    padding-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle table shadow */
+    border: 1px solid #ddd; /* Add border to the table */
+}
+
+table th,
+table td {
+    border: 1px solid #ddd; /* Add borders to cells */
+    padding: 12px 15px;
+    text-align: center; /* Center align text in columns */
+}
+
+table th {
+    background-color: #e6f7ff; /* Light blue for table headers */
+    color: #0c00b3;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+table tr:nth-child(even) {
+    background-color: #f0f8ff; /* Alternate row color */
+}
+
+table tr:hover {
+    background-color: #e0f2f7; /* Highlight row on hover */
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Ensure canvas takes full width */
+    margin: 0 auto; /* Center the canvas */
+}
+
+/* Chart Container */
+.chart-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.zone-charts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.zone-chart-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    width: 300px; /* Adjust as needed */
+}
+
+.zone-chart-item h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* File input styling */
+input[type="file"] {
+    display: none; /* Hide default file input */
+}
+
+label[for="csvFileInput"] {
+    background-color: #28a745; /* Green button */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+label[for="csvFileInput"]:hover {
+    background-color: #218838;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        padding: 0 15px 15px 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    header {
+        padding: 10px 15px;
+    }
+
+    .header-content {
+        flex-direction: column;
+    }
+
+    .logo-container {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
