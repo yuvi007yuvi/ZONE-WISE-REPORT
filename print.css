@@ -1,0 +1,65 @@
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    header,
+    #csvFileInput,
+    label[for="csvFileInput"],
+    #printReport {
+        display: none !important;
+    }
+
+    #chart-container {
+        display: block !important;
+    }
+
+    .dashboard-content {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+    }
+
+    #zoneDataTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    #zoneDataTable th,
+    #zoneDataTable td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    #zoneDataTable th {
+        background-color: #f2f2f2;
+    }
+
+    .data-table-container {
+        display: block !important;
+        width: 100%;
+        margin-top: 20px;
+
+    }
+
+    #reportDateTime {
+        display: block !important;
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    .zone-charts-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .zone-chart-item {
+        width: 32%; /* Three charts per row to fit more on one page */
+        margin: 1%;
+        page-break-inside: avoid;
+    }
+}

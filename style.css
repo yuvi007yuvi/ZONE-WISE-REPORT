@@ -158,6 +158,12 @@ label[for="csvFileInput"] {
 label[for="csvFileInput"]:hover {
     background-color: #218838;
 }
+button{
+    background-color: aqua;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const csvFileInput = document.getElementById('csvFileInput');
     const zoneDataTableBody = document.querySelector('#zoneDataTable tbody');
+    const printReportButton = document.getElementById('printReport');
+    const reportDateTimeDiv = document.getElementById('reportDateTime');
 
 
     csvFileInput.addEventListener('change', (event) => {
@@ -35,15 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const covered = parseInt(item.Covered) || 0;
 
             if (!zoneData[zone]) {
-                zoneData[zone] = { total: 0, covered: 0, entries: 0 };
+                zoneData[zone] = { total: 0, covered: 0, entries: 0, vehicles: new Set() };
             }
             zoneData[zone].total += total;
             zoneData[zone].covered += covered;
             zoneData[zone].entries += 1;
+            // Assuming 'Vehicle Number' is the header for the vehicle column
+            // If the actual header is different, this will need adjustment.
+            if (item['Vehicle Number']) {
+                zoneData[zone].vehicles.add(item['Vehicle Number']);
+            }
         });
 
         updateTable(zoneData);
         createZoneCharts(zoneData);
+        updateReportDateTime();
     }
 
     function updateTable(zoneData) {
@@ -51,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let grandTotal = 0;
         let grandCovered = 0;
         let grandEntries = 0;
+        let grandVehicles = 0;
 
         for (const zone in zoneData) {
             const total = zoneData[zone].total;
@@ -58,16 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const percentage = total > 0 ? ((covered / total) * 100).toFixed(2) : 0;
 
             const entries = zoneData[zone].entries;
+            const vehiclesCount = zoneData[zone].vehicles.size;
             const row = zoneDataTableBody.insertRow();
             row.insertCell().textContent = zone;
             row.insertCell().textContent = total;
             row.insertCell().textContent = covered;
             row.insertCell().textContent = entries;
             row.insertCell().textContent = `${percentage}%`;
+            row.insertCell().textContent = vehiclesCount;
 
             grandTotal += total;
             grandCovered += covered;
             grandEntries += entries;
+            grandVehicles += vehiclesCount;
         }
 
         // Add Grand Total row
@@ -79,6 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
         grandTotalRow.insertCell().textContent = grandEntries;
         const grandPercentage = grandTotal > 0 ? ((grandCovered / grandTotal) * 100).toFixed(2) : 0;
         grandTotalRow.insertCell().textContent = `${grandPercentage}%`;
+        grandTotalRow.insertCell().textContent = grandVehicles;
+    }
+
+    printReportButton.addEventListener('click', () => {
+        window.print();
+    });
+
+    function updateReportDateTime() {
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        reportDateTimeDiv.textContent = `Report generated on: ${now.toLocaleDateString(undefined, options)}`;
     }
 
     function createZoneCharts(zoneData) {
