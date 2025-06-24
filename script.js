@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const zoneData = {};
+        let totalVehicleEntries = 0;
 
         data.forEach(item => {
             const zone = item.Zone;
@@ -46,20 +47,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // If the actual header is different, this will need adjustment.
             if (item['Vehicle Number']) {
                 zoneData[zone].vehicles.add(item['Vehicle Number']);
+                totalVehicleEntries++; // Increment for each entry with a vehicle number
             }
         });
 
-        updateTable(zoneData);
+        updateTable(zoneData, totalVehicleEntries);
         createZoneCharts(zoneData);
         updateReportDateTime();
     }
 
-    function updateTable(zoneData) {
+    function updateTable(zoneData, totalVehicleEntries) {
         zoneDataTableBody.innerHTML = ''; // Clear existing table data
         let grandTotal = 0;
         let grandCovered = 0;
         let grandEntries = 0;
-        let grandVehicles = 0;
 
         for (const zone in zoneData) {
             const total = zoneData[zone].total;
@@ -79,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
             grandTotal += total;
             grandCovered += covered;
             grandEntries += entries;
-            grandVehicles += vehiclesCount;
         }
 
         // Add Grand Total row
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grandTotalRow.insertCell().textContent = grandEntries;
         const grandPercentage = grandTotal > 0 ? ((grandCovered / grandTotal) * 100).toFixed(2) : 0;
         grandTotalRow.insertCell().textContent = `${grandPercentage}%`;
-        grandTotalRow.insertCell().textContent = grandVehicles;
+        grandTotalRow.insertCell().textContent = totalVehicleEntries;
     }
 
     printReportButton.addEventListener('click', () => {
