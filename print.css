@@ -2,17 +2,22 @@
     body {
         margin: 0;
         padding: 0;
+        font-family: Arial, sans-serif;
+        color: #333;
     }
 
-    header,
+    /* Show header content but hide interactive elements */
     #csvFileInput,
     label[for="csvFileInput"],
-    #printReport {
+    #printReport,
+    #zoneSelect,
+    #printZoneReport {
         display: none !important;
     }
 
     #chart-container {
         display: block !important;
+        margin: 20px 0;
     }
 
     .dashboard-content {
@@ -29,13 +34,19 @@
 
     #zoneDataTable th,
     #zoneDataTable td {
-        border: 1px solid #ddd;
+        border: 1px solid #2c3e50;
         padding: 8px;
-        text-align: left;
+        text-align: center;
     }
 
     #zoneDataTable th {
-        background-color: #f2f2f2;
+        background-color: #3498db;
+        color: white;
+        font-weight: bold;
+    }
+
+    #zoneDataTable tr:nth-child(even) {
+        background-color: #f8f9fa;
     }
 
     .data-table-container {
@@ -49,17 +60,196 @@
         display: block !important;
         text-align: right;
         margin-bottom: 20px;
+        color: #7f8c8d;
     }
 
     .zone-charts-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        margin: 20px 0;
     }
 
     .zone-chart-item {
         width: 32%; /* Three charts per row to fit more on one page */
         margin: 1%;
         page-break-inside: avoid;
+        text-align: center;
+        background-color: #ffffff;
+        border: 1px solid #bdc3c7;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    
+    .zone-chart-item canvas {
+        max-width: 100%;
+        height: auto !important;
+    }
+    
+    .zone-chart-item h3 {
+        margin-top: 0;
+        font-size: 1.2em;
+        color: #2c3e50;
+        background-color: #ecf0f1;
+        padding: 5px;
+        border-radius: 3px;
+    }
+    
+    .ward-data-table,
+    .ward-performance-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+    
+    .ward-data-table th,
+    .ward-data-table td,
+    .ward-performance-table th,
+    .ward-performance-table td {
+        border: 1px solid #2c3e50;
+        padding: 6px;
+        text-align: center;
+    }
+    
+    .ward-data-table th,
+    .ward-performance-table th {
+        background-color: #2ecc71;
+        color: white;
+        font-weight: bold;
+    }
+    
+    .ward-data-table tr:nth-child(even),
+    .ward-performance-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    .best-worst-wards-container {
+        display: block;
+        background-color: #ffffff;
+        border: 1px solid #bdc3c7;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 20px 0;
+    }
+    
+    .ward-performance-section {
+        margin: 20px 0;
+        page-break-inside: avoid;
+        background-color: #ffffff;
+        border: 1px solid #bdc3c7;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    
+    .ward-performance-section.best {
+        border-color: #27ae60;
+        background-color: #e8f5e9;
+    }
+    
+    .ward-performance-section.worst {
+        border-color: #c0392b;
+        background-color: #fdedec;
+    }
+    
+    .ward-performance-section.best h3 {
+        color: #27ae60;
+    }
+    
+    .ward-performance-section.worst h3 {
+        color: #c0392b;
+    }
+    
+    /* Styles for zone-specific report printing */
+    .summary-table {
+        width: 50%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+    
+    .summary-table th,
+    .summary-table td {
+        border: 1px solid #2c3e50;
+        padding: 8px;
+        text-align: center;
+    }
+    
+    .summary-table th {
+        background-color: #9b59b6;
+        color: white;
+        font-weight: bold;
+    }
+    
+    .summary-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    /* Logo styling for print */
+    .logo-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .logo-container img {
+        height: 100px;
+        width: 150px;
+    }
+    
+    .report-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .report-header h1 {
+        margin: 0;
+        font-size: 1.8em;
+        color: #2c3e50;
+    }
+    
+    .report-header h2 {
+        margin: 10px 0;
+        font-size: 1.5em;
+        color: #34495e;
+    }
+    
+    /* Header styling for print */
+    header {
+        text-align: center;
+        margin-bottom: 20px;
+        box-shadow: none;
+        padding: 10px 0;
+        background-color: #ecf0f1;
+        border-bottom: 2px solid #3498db;
+    }
+    
+    .header-content {
+        display: block;
+    }
+    
+    h1 {
+        margin: 10px 0;
+        font-size: 1.8em;
+        color: #2c3e50;
+    }
+    
+    h2 {
+        margin: 20px 0 10px 0;
+        font-size: 1.3em;
+        color: #34495e;
+    }
+    
+    /* POI specific styling */
+    h1, h2 {
+        color: #2c3e50;
+    }
+    
+    /* Add background colors for better visual appeal */
+    body {
+        background-color: #ffffff;
+    }
+    
+    /* Ensure colors are printed */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
     }
 }

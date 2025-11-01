@@ -7,12 +7,13 @@ body {
 }
 
 header {
-    /* background-color: #4745f1; Blue header */
+    background-color: #ffffff;
     color: rgb(0, 0, 0);
     padding: 15px 20px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    border-bottom: 2px solid #3498db;
 }
 
 .header-content {
@@ -35,30 +36,7 @@ header {
 h1 {
     margin: 0;
     font-size: 2.5em;
-    color: rgb(20, 16, 16);
-}
-
-.container {
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* Adjust column ratio */
-    gap: 30px;
-    margin: 0 auto; /* Center the container */
-    max-width: 1200px; /* Max width for content */
-    padding: 0 20px 20px 20px; /* Padding for the container */
-}
-
-.zone-data-summary,
-.coverage-pie-chart {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
-}
-
-.zone-data-summary:hover,
-.coverage-pie-chart:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    color: #2c3e50;
 }
 
 h2 {
@@ -74,25 +52,25 @@ table {
     border-collapse: collapse;
     margin-top: 15px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle table shadow */
-    border: 1px solid #ddd; /* Add border to the table */
+    border: 1px solid #2c3e50; /* Add border to the table */
 }
 
 table th,
 table td {
-    border: 1px solid #ddd;
+    border: 1px solid #2c3e50;
     padding: 12px 15px;
     text-align: center; /* Center align text in columns */
 }
 
 table th {
-    background-color: #e6f7ff; /* Light blue for table headers */
-    color: #0c00b3;
+    background-color: #3498db; /* Blue for table headers */
+    color: white;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 table tr:nth-child(even) {
-    background-color: #f0f8ff; /* Alternate row color */
+    background-color: #f8f9fa; /* Alternate row color */
 }
 
 table tr:hover {
@@ -115,6 +93,7 @@ canvas {
     margin-bottom: 20px;
     flex: 1;
     min-width: 300px;
+    border: 1px solid #bdc3c7;
 }
 
 .zone-charts-container {
@@ -125,17 +104,26 @@ canvas {
 }
 
 .zone-chart-item {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     text-align: center;
     width: 300px; /* Adjust as needed */
+    border: 1px solid #bdc3c7;
 }
 
 .zone-chart-item h3 {
     margin-top: 0;
-    color: #333;
+    color: #2c3e50;
+    background-color: #ecf0f1;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.zone-chart-item canvas {
+    max-width: 100%;
+    height: auto !important;
 }
 
 /* File input styling */
@@ -158,11 +146,29 @@ label[for="csvFileInput"] {
 label[for="csvFileInput"]:hover {
     background-color: #218838;
 }
-button{
-    background-color: aqua;
+
+button {
+    background-color: #007bff;
+    color: white;
     padding: 10px 20px;
+    border: none;
     border-radius: 5px;
-    color: rgb(0, 0, 0);
+    cursor: pointer;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Zone selection styling */
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+    background-color: white;
 }
 
 /* Ward Report Table Styling */
@@ -172,6 +178,7 @@ button{
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #bdc3c7;
 }
 
 .ward-report-container h3 {
@@ -184,18 +191,33 @@ button{
 }
 
 .ward-data-table {
-    width: 80%; /* Adjust width as needed */
+    width: 100%; /* Adjust width as needed */
     margin: 20px auto; /* Center the table */
     border-collapse: collapse;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
+    border: 1px solid #2c3e50;
 }
 
 .ward-data-table th,
 .ward-data-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #2c3e50;
     padding: 10px 12px;
     text-align: center;
+}
+
+.ward-data-table th {
+    background-color: #2ecc71; /* Green for ward table headers */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.ward-data-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.ward-data-table tr:hover {
+    background-color: #e0f2f7;
 }
 
 /* Ward Performance Table Styling */
@@ -205,6 +227,25 @@ button{
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #bdc3c7;
+}
+
+.ward-performance-section.best {
+    border-color: #27ae60;
+    background-color: #e8f5e9;
+}
+
+.ward-performance-section.worst {
+    border-color: #c0392b;
+    background-color: #fdedec;
+}
+
+.ward-performance-section.best h3 {
+    color: #27ae60;
+}
+
+.ward-performance-section.worst h3 {
+    color: #c0392b;
 }
 
 .ward-performance-section h3 {
@@ -216,50 +257,35 @@ button{
 }
 
 .ward-performance-table {
-    width: 80%;
+    width: 100%;
     margin: 15px auto;
     border-collapse: collapse;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
+    border: 1px solid #2c3e50;
 }
 
 .ward-performance-table th,
 .ward-performance-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #2c3e50;
     padding: 10px;
     text-align: center;
 }
 
 .ward-performance-table th {
-    background-color: #e6f7ff;
-    color: #0c00b3;
+    background-color: #9b59b6; /* Purple for performance table headers */
+    color: white;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 .ward-performance-table tr:nth-child(even) {
-    background-color: #f0f8ff;
+    background-color: #f8f9fa;
 }
 
 .ward-performance-table tr:hover {
     background-color: #e0f2f7;
 }
-.ward-data-table th {
-    background-color: #e6f7ff;
-    color: #0c00b3;
-    font-weight: bold;
-    text-transform: uppercase;
-}
 
-.ward-data-table tr:nth-child(even) {
-    background-color: #f0f8ff;
-}
-
-.ward-data-table tr:hover {
-    background-color: #e0f2f7;
-}
-
-/* Best/Worst Wards Container */
 .best-worst-wards-container {
     display: flex;
     justify-content: space-around;
@@ -270,6 +296,7 @@ button{
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #bdc3c7;
 }
 
 .best-worst-wards-container h2 {
@@ -287,6 +314,17 @@ button{
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #bdc3c7;
+}
+
+.best-wards-card {
+    border-color: #27ae60;
+    background-color: #e8f5e9;
+}
+
+.worst-wards-card {
+    border-color: #c0392b;
+    background-color: #fdedec;
 }
 
 .best-wards-card h3,
@@ -295,6 +333,14 @@ button{
     margin-top: 0;
     margin-bottom: 15px;
     color: #0056b3;
+}
+
+.best-wards-card h3 {
+    color: #27ae60;
+}
+
+.worst-wards-card h3 {
+    color: #c0392b;
 }
 
 .best-wards-card ul,
@@ -336,5 +382,20 @@ button{
     .logo-container {
         margin-right: 0;
         margin-bottom: 10px;
+    }
+    
+    .best-worst-wards-container {
+        flex-direction: column;
+    }
+    
+    .best-wards-card,
+    .worst-wards-card {
+        max-width: 100%;
+    }
+    
+    button, select {
+        display: block;
+        margin: 10px 0;
+        width: 100%;
     }
 }

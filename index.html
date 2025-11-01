@@ -13,31 +13,32 @@
     <header>
         <div class="header-content">
             <div class="logo-container">
-                <!-- Add your logo image here -->
-                <img src="logo.png" alt="Logo">
+                <img src="logo.png" alt="Company Logo" id="mainLogo">
             </div>
-            <h1>Zone Wise Report</h1>
+            <h1>POI Coverage Zone Wise Report</h1>
         </div>
         <div id="reportDateTime" style="text-align: right; font-size: 0.9em; margin-top: 10px;"></div>
     </header>
 
     <input type="file" id="csvFileInput" accept=".csv">
     <label for="csvFileInput">Choose File</label>
-    <button id="printReport">Print Report</button>
+    <button id="printReport">Print Full Report</button>
+    <select id="zoneSelect" style="display: none;">
+        <option value="">Select a zone to print</option>
+    </select>
+    <button id="printZoneReport" style="display: none;">Print Zone Report</button>
 
     <div class="dashboard-content">
         <div class="data-summary">
             <center>
-                <h2>Zone Data Summary</h2>
+                <h2>POI Zone Data Summary</h2>
             </center>
             <table id="zoneDataTable">
                 <thead>
                     <tr>
-                        <th>Zone</th>
+                        <th>Zone & Circle</th>
                         <th>Total</th>
                         <th>Covered</th>
-                        <th>TOTAL ROUTS</th>
-                        <th>VEHICLES ON ROUTE </th>
                         <th>Percentage Covered</th>
                     </tr>
                 </thead>
@@ -49,19 +50,21 @@
     </div>
     <div id="chart-container">
         <center>
-            <h2>Coverage by Zone</h2>
+            <h2>POI Coverage by Zone</h2>
         </center>
         <div id="zoneChartsContainer" class="zone-charts-container"></div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Add Chart.js datalabels plugin -->
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
         <div class="ward-report-container" id="wardReportContainer">
             <center>
-                <h2>Ward Wise Report</h2>
+                <h2>POI Ward Wise Report</h2>
             </center>
         </div>
         <div id="bestWorstWardsContainer" class="best-worst-wards-container">
             <center>
-                <h2>Ward Performance Summary</h2>
+                <h2>POI Ward Performance Summary</h2>
             </center>
         </div>
         <script src="script.js"></script>
