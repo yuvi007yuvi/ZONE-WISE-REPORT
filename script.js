@@ -31,8 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const zoneData = {};
         const wardData = {};
-        let totalVehicleEntries = 0;
         const allWards = [];
+        const allUniqueVehicles = new Set();
+        let blankVehicleNumberCount = 0;
 
         data.forEach(item => {
             const zone = item.Zone;
@@ -58,10 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
             wardData[zone][ward].entries += 1;
 
             // Assuming 'Vehicle Number' is the header for the vehicle column
-            if (item['Vehicle Number']) {
+            if (item['Vehicle Number'] && item['Vehicle Number'] !== 'N/A') {
                 zoneData[zone].vehicles.add(item['Vehicle Number']);
                 wardData[zone][ward].vehicles.add(item['Vehicle Number']);
-                totalVehicleEntries++; // Increment for each entry with a vehicle number
+                allUniqueVehicles.add(item['Vehicle Number']);
+            } else {
+                blankVehicleNumberCount++;
             }
         });
 
@@ -74,14 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        updateTable(zoneData, totalVehicleEntries);
+        updateTable(zoneData, allUniqueVehicles.size, blankVehicleNumberCount);
         createZoneCharts(zoneData);
         updateWardTable(wardData);
         displayBestWorstWards(allWards);
         updateReportDateTime();
     }
 
-    function updateTable(zoneData, totalVehicleEntries) {
+    function updateTable(zoneData, totalUniqueVehicles, blankVehicleNumberCount) {
         zoneDataTableBody.innerHTML = ''; // Clear existing table data
         let grandTotal = 0;
         let grandCovered = 0;
@@ -114,7 +117,17 @@ document.addEventListener('DOMContentLoaded', () => {
         grandTotalRow.insertCell().textContent = grandTotal;
         grandTotalRow.insertCell().textContent = grandCovered;
         grandTotalRow.insertCell().textContent = grandEntries;
-        grandTotalRow.insertCell().textContent = totalVehicleEntries;
+        grandTotalRow.insertCell().textContent = totalUniqueVehicles;
+
+        // Add a row for blank vehicle numbers
+        const blankVehiclesRow = zoneDataTableBody.insertRow();
+        blankVehiclesRow.style.fontWeight = 'bold';
+        blankVehiclesRow.insertCell().textContent = 'Blank Vehicle Numbers';
+        blankVehiclesRow.insertCell().textContent = ''; // Empty cells for other columns
+        blankVehiclesRow.insertCell().textContent = '';
+        blankVehiclesRow.insertCell().textContent = '';
+        blankVehiclesRow.insertCell().textContent = blankVehicleNumberCount;
+        blankVehiclesRow.insertCell().textContent = '';
         const grandPercentage = grandTotal > 0 ? ((grandCovered / grandTotal) * 100).toFixed(2) : 0;
         grandTotalRow.insertCell().textContent = `${grandPercentage}%`;
     }
